@@ -20,6 +20,48 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+<!--- stack exchange code-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
+            <script type="text/javascript" src="http://public.tableausoftware.com/javascripts/api/tableau_v8.js"></script>
+            <script type="text/javascript">
+                function initializeViz() {
+                 var placeholderDiv = document.getElementById("tableauViz");
+                 var url = "https://public.tableau.com/shared/MNDK25PXM?:display_count=y&:origin=viz_share_link";
+                 var options = {
+                    width: placeholderDiv.offsetWidth,
+                    height: placeholderDiv.offsetHeight,
+                    hideTabs: true,
+                    hideToolbar: true,
+                    onFirstInteractive: function () {
+                      workbook = viz.getWorkbook();
+                      activeSheet = workbook.getActiveSheet();
+                    }
+                  };
+                  viz = new tableauSoftware.Viz(placeholderDiv, url, options);
+                  }
+
+
+function filterSingleValue() {
+  activeSheet.applyFilterAsync(
+    "Region",
+    "The Americas",
+    tableauSoftware.FilterUpdateType.REPLACE);
+}
+
+                function clearFilters() {
+  activeSheet.clearFilterAsync("Region");
+  activeSheet.clearFilterAsync("F: GDP per capita (curr $)");
+}
+            </script>
+            <style>
+                #tableauViz
+                {
+                    height: 800px;
+                    width: max-content;
+                }
+            </style>
+
 </head>
 
 <body id="page-top">
@@ -64,9 +106,18 @@
                                 </div>
                                 <!-- Card Body Map -->
                                 <div class="card-body">
-
-                                  <iframe src="https://public.tableau.com/shared/MNDK25PXM?:embed=y&:display_count=yes&:showVizHome=no" height="927px"></iframe>
-      </div>
+                                  <div id="tableauViz">
+                                                   <p>
+                                                     <button onclick="$(initializeViz);">Run this code</button>
+                                                   </p>
+                                                   <p>
+                                                     <button onclick="$(filterSingleValue);">Filter View</button>
+                                                   </p>
+                                                   <p>
+                                                     <button onclick="$(clearFilters);">Load Default</button>
+                                                   </p>
+                                         </div>
+                                        </div>
                             </div>
                         </div>
 
