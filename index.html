@@ -42,17 +42,6 @@
                   }
 
 
-function filterSingleValue() {
-  activeSheet.applyFilterAsync(
-    "Region",
-    "The Americas",
-    tableauSoftware.FilterUpdateType.REPLACE);
-}
-
-                function clearFilters() {
-  activeSheet.clearFilterAsync("Region");
-  activeSheet.clearFilterAsync("F: GDP per capita (curr $)");
-}
             </script>
             <style>
                 #tableauViz
@@ -63,7 +52,7 @@ function filterSingleValue() {
 
 </head>
 
-<body id="page-top">
+<body id="page-top"  onload="$(initializeViz);">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -106,15 +95,15 @@ function filterSingleValue() {
                                 <!-- Card Body Map -->
                                 <div class="card-body">
                                   <div id="tableauViz">
-                                               <p>
-                                                     <button onclick="$(initializeViz);">Run this code</button>
+
+                                                  <!--  <p> <button onclick="$(initializeViz);">Run this code</button>
                                                    </p>
                                                    <p>
                                                      <button onclick="$(filterSingleValue);">Filter View</button>
                                                    </p>
                                                    <p>
                                                      <button onclick="$(clearFilters);">Load Default</button>
-                                                   </p>
+                                                   </p>-->
                                          </div>
                                         </div>
                             </div>
